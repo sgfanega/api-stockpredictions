@@ -32,7 +32,7 @@ class StockPredictionController extends Controller
         $stockPrediction = StockPrediction::where('ticker_symbol', $tickerSymbol)->first();
 
         if (!$stockPrediction) {
-            return response()->json(['message' => ($tickerSymbol . 'Stock not found.')], 404);
+            return response()->json(['message' => ($tickerSymbol . ' Stock not found.')], 404);
         }
 
         return response()->json([
