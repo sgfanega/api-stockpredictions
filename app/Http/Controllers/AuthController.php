@@ -63,24 +63,18 @@ class AuthController extends Controller
     }
 
     /**
-     * Delete Method
+     * Logout Method
      * 
-     * @param string $email
-     * 
-     * @return \Illuminate\Http\Response
+     * @return \App\Traits\HttpResponse
      */
-    // public function destroy(string $email)
-    // {
-    //     $user = User::where('email', $email)->first();
+    public function logout()
+    {
+        $user = Auth::user();
 
-    //     if (!$user) {
-    //         return response()->json(['message' => 'User not found.'], 404);
-    //     }
+        $user->currentAccessToken()->delete();
 
-    //     Auth::logout();
-
-    //     $user->delete();
-
-    //     return response($email . ' User Deleted.', 200);
-    // }
+        return $this->success([
+            'message' => 'You have successfully logged out of the Stock Predictor API, and your token is deleted and unusable.'            
+        ]);
+    }
 }
